@@ -1,0 +1,12 @@
+FROM linimbus/goproxy
+
+MAINTAINER lixiangyun linimbus@126.com
+
+WORKDIR /root/
+
+COPY ./proxy.crt .
+COPY ./proxy.key .
+
+EXPOSE 8080
+
+ENTRYPOINT ["./proxy", "http", "--always", "-t", "tcp", "-p", ":8080", "-T", "tcp", "-C", "/proxy.crt" ,"-K" ,"/proxy.key", "-P"]
