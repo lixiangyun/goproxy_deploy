@@ -9,4 +9,4 @@ COPY ./proxy.key .
 
 EXPOSE 8080
 
-ENTRYPOINT ["./proxy", "http", "--always", "-t", "tcp", "-p", ":8080", "-T", "tcp", "-C", "/proxy.crt" ,"-K" ,"/proxy.key", "-P"]
+ENTRYPOINT ["./proxy", "http", "--always", "-t", "tcp", "-p", ":8080", "-T", "tcp", "-C", "./proxy.crt" ,"-K" ,"./proxy.key", "-P"]
