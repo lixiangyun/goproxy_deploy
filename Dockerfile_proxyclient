@@ -1,9 +1,0 @@
-FROM linimbus/goproxy
-
-MAINTAINER lixiangyun linimbus@126.com
-
-WORKDIR /root/
-
-EXPOSE 8080
-
-ENTRYPOINT ["./proxy", "http", "-t", "tcp", "-p", ":8080", "-T", "tcp", "-P"]
