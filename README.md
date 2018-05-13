@@ -1,11 +1,9 @@
-### http代理服务端镜像，默认监听：38080 端口
-- docker run --net="host" -d --restart=always linimbus/proxyserver
-- docker run --net="host" -d --restart=always linimbus/proxyserver_tls
+### http代理服务端镜像，默认监听：8080 端口
 
-### http代理客户端镜像，默认监听：8080 端口
-- docker run --net="host" -d --restart=always linimbus/proxyclient 10.22.33.44:38080
-- docker run --net="host" -d --restart=always linimbus/proxyclient_tls 10.22.33.44:38080
+- docker build -t linimbus/goproxy_docker -f Dockerfile_goproxy .
+- docker run -d -p 8080:8080 --restart=always linimbus/goproxy_docker
 
 ### 在客户端设置HTTP代理环境变量
-http_proxy=http://127.0.0.1:8080
-https_proxy=http://127.0.0.1:8080
+
+- http_proxy=http://xxx.xxx.xxx.xxx:8080
+- https_proxy=http://xxx.xxx.xxx.xxx:8080
