@@ -17,3 +17,10 @@
 ```
 
 然后设置你的windos系统中，需要通过代理上网的程序的代理为http模式，地址为：127.0.0.1，端口为：8080,程序即可通过加密通道通过vps上网。
+
+## 安装到linux后台服务
+```
+cp goproxy.service /lib/systemd/system/goproxy.service 
+systemctl daemon-reload
+service goproxy start
+```
