@@ -1,0 +1,14 @@
+[Unit]
+Description=/root/goproxy_deploy/start.sh Compatibility
+ConditionFileIsExecutable=/root/goproxy_deploy/start.sh
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/root/goproxy_deploy/start.sh start
+TimeoutSec=0
+RemainAfterExit=yes
+
+[Install]  
+WantedBy=multi-user.target  
+Alias=rc-local.service
