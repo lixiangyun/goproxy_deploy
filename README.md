@@ -24,3 +24,25 @@ cp goproxy.service /lib/systemd/system/goproxy.service
 systemctl daemon-reload
 service goproxy start
 ```
+
+## 内网穿透
+
+### 公司机器A提供了web服务80端口，有VPS一个,公网IP:22.22.22.22
+
+需求:
+在家里能够通过访问VPS的28080端口访问到公司机器A的80端口
+
+步骤:
+
+- 在vps上执行
+
+    ```
+    ./proxy bridge -p ":33080" -C proxy.crt -K proxy.key
+    ./proxy server -r ":28080@:80" -P "127.0.0.1:33080" -C proxy.crt -K proxy.key
+    ```
+
+- 在公司机器A上面执行
+        
+    ```
+    ./proxy client -P "22.22.22.22:33080" -C proxy.crt -K proxy.key
+    ```
