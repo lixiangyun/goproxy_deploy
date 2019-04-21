@@ -1,0 +1,32 @@
+listeners:
+  - address: 0.0.0.0:38080
+    cluster: goproxy_basic
+    tls: server
+  - address: 0.0.0.0:38081
+    cluster: goproxy_basic
+    tls: server
+  - address: 0.0.0.0:38082
+    cluster: goproxy_basic
+    tls: server
+clusters:
+  - name: goproxy_basic
+    endpoints:
+    - 127.0.0.1:8080
+    - 127.0.0.1:8081
+    - 127.0.0.1:8082
+    - 127.0.0.1:8083
+    - 127.0.0.1:8084
+    - 127.0.0.1:8085
+    - 127.0.0.1:8086
+    - 127.0.0.1:8087
+    - 127.0.0.1:8088
+    - 127.0.0.1:8089
+tls:
+  - name: client
+    ca: ./crt/ca.crt
+    key: ./crt/client.pem
+    cert: ./crt/client.crt
+  - name: server
+    ca: crt/ca.crt
+    key: ./crt/server.pem
+    cert: ./crt/server.crt

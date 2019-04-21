@@ -1,0 +1,19 @@
+listeners:
+  - address: 0.0.0.0:38080
+    cluster: tcpproxy
+clusters:
+  - name: tcpproxy
+    endpoints:
+    - aws.lixiangyun.top:38080
+    - aws.lixiangyun.top:38081
+    - aws.lixiangyun.top:38082
+    tls: client
+tls:
+  - name: client
+    ca: ./crt/ca.crt
+    key: ./crt/client.pem
+    cert: ./crt/client.crt
+  - name: server
+    ca: crt/ca.crt
+    key: ./crt/server.pem
+    cert: ./crt/server.crt

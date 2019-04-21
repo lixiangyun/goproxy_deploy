@@ -1,9 +1,16 @@
 #!/bin/bash
 cd /root/goproxy_deploy
-./proxy http -t tls -p ":38080" -C proxy.crt -K proxy.key --forever --log proxy.log --daemon
-./proxy http -t tls -p ":38081" -C proxy.crt -K proxy.key --forever --log proxy.log --daemon
-./proxy http -t tls -p ":38082" -C proxy.crt -K proxy.key --forever --log proxy.log --daemon
-./proxy http -t tls -p ":38083" -C proxy.crt -K proxy.key --forever --log proxy.log --daemon
-./proxy http -t tls -p ":38084" -C proxy.crt -K proxy.key --forever --log proxy.log --daemon
-./proxy http -t tls -p ":38085" -C proxy.crt -K proxy.key --forever --log proxy.log --daemon
+killall goproxy_basic
+killall tcpproxy
+nohup ./goproxy_basic -addr :8080 &
+nohup ./goproxy_basic -addr :8081 &
+nohup ./goproxy_basic -addr :8082 &
+nohup ./goproxy_basic -addr :8083 &
+nohup ./goproxy_basic -addr :8084 &
+nohup ./goproxy_basic -addr :8085 &
+nohup ./goproxy_basic -addr :8086 &
+nohup ./goproxy_basic -addr :8087 &
+nohup ./goproxy_basic -addr :8088 &
+nohup ./goproxy_basic -addr :8089 &
+nohup ./tcpproxy -config config_server.yaml &
 exit 0
