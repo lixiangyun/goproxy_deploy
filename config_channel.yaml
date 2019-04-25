@@ -6,7 +6,7 @@ client:
   tls: client
 channel:
   - protocol: tcp
-    local: 127.0.0.1:8080
+    local: 127.0.0.1:8000
     remote: 127.0.0.1:8080
 tls:
   - name: client
