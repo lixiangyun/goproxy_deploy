@@ -1,5 +1,5 @@
 listeners:
-  - address: 0.0.0.0:38080
+  - address: 0.0.0.0:8000
     cluster: tcpproxy
 clusters:
   - name: tcpproxy
