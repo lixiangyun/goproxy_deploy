@@ -4,9 +4,9 @@ listeners:
 clusters:
   - name: tcpproxy
     endpoints:
-    - aws.lixiangyun.top:38080
     - aws.lixiangyun.top:38081
     - aws.lixiangyun.top:38082
+    - aws.lixiangyun.top:38083
     tls: client
 tls:
   - name: client
