@@ -1,25 +1,23 @@
 FROM ubuntu:xenial
 MAINTAINER lixiangyun linimbus@126.com
 
-WORKDIR /gopath/
-ENV GOPATH=/gopath/
-ENV GOOS=linux
-ENV CGO_ENABLED=0
+WORKDIR /usr/bin/
 
+ADD ./crt/client.crt ./crt/client.crt
+ADD ./crt/client.pem ./crt/client.pem
+ADD ./crt/server.crt ./crt/server.crt
+ADD ./crt/server.pem ./crt/server.pem
 
-RUN go get -u -v github.com/lixiangyun/benchmark
-WORKDIR /gopath/src/github.com/lixiangyun/benchmark
-RUN go build .
+ADD config_server.yaml config_server.yaml
+ADD http_proxy_server.sh http_proxy_server.sh
 
-
-FROM alpine:latest
-RUN apk --no-cache add ca-certificates
-
-WORKDIR /bin
-COPY --from=0 /gopath/src/github.com/lixiangyun/benchmark/benchmark ./benchmark
+ADD goproxy_basic goproxy_basic
+ADD tcpproxy tcpproxy
 
 RUN chmod +x *
 
 EXPOSE 8080
+EXPOSE 8081
+EXPOSE 8082
 
-CMD ["benchmark","-port","8080"]
+ENTRYPOINT ["http_proxy_server.sh"]
