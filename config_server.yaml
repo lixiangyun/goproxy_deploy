@@ -2,20 +2,10 @@ listeners:
   - address: 0.0.0.0:8080
     cluster: goproxy_basic
     tls: server
-  - address: 0.0.0.0:8081
-    cluster: goproxy_basic
-    tls: server
-  - address: 0.0.0.0:8082
-    cluster: goproxy_basic
-    tls: server
 clusters:
   - name: goproxy_basic
     endpoints:
     - 127.0.0.1:1000
-    - 127.0.0.1:1001
-    - 127.0.0.1:1002
-    - 127.0.0.1:1003
-    - 127.0.0.1:1004
 tls:
   - name: client
     key: ./crt/client.pem
