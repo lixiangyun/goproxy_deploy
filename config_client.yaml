@@ -4,9 +4,7 @@ listeners:
 clusters:
   - name: tcpproxy
     endpoints:
-    - proxy.lixiangyun.top:8080
-    - proxy.lixiangyun.top:8081
-    - proxy.lixiangyun.top:8082
+    - 159.138.131.32:8080
     tls: client
 tls:
   - name: client
