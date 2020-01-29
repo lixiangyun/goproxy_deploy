@@ -34,7 +34,7 @@ func (s *Stat)display() {
 	go func() {
 		for {
 			<-ticker.C
-			log.Printf("%s ↑%s ↓%s\n",
+			log.Printf("%s up:%s down:%s\n",
 				s.prefix, calcUnit(s.up), calcUnit(s.down))
 		}
 	}()

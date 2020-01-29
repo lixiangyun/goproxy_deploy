@@ -40,9 +40,9 @@ func newTempCertificates() (tls.Certificate, error) {
 	max := new(big.Int).Lsh(big.NewInt(1), 128)   //把 1 左移 128 位，返回给 big.Int
 	serialNumber, _ := rand.Int(rand.Reader, max) //返回在 [0, max) 区间均匀随机分布的一个随机值
 	subject := pkix.Name{                         //Name代表一个X.509识别名。只包含识别名的公共属性，额外的属性被忽略。
-		Organization:       []string{"benchmark co."},
-		OrganizationalUnit: []string{"benchmark"},
-		CommonName:         "Go enchmark Programming",
+		Organization:       []string{"proxy co."},
+		OrganizationalUnit: []string{"proxy"},
+		CommonName:         "Go proxy Programming",
 	}
 	template := x509.Certificate{
 		SerialNumber: serialNumber, // SerialNumber 是 CA 颁布的唯一序列号，在此使用一个大随机数来代表它
@@ -50,7 +50,7 @@ func newTempCertificates() (tls.Certificate, error) {
 		NotBefore:    time.Now(),
 		NotAfter:     time.Now().Add(365 * 24 * time.Hour),
 		KeyUsage:     x509.KeyUsageKeyEncipherment | x509.KeyUsageDigitalSignature, //KeyUsage 与 ExtKeyUsage 用来表明该证书是用来做服务器认证的
-		ExtKeyUsage:  []x509.ExtKeyUsage{x509.ExtKeyUsageServerAuth},               // 密钥扩展用途的序列
+		ExtKeyUsage:  []x509.ExtKeyUsage{x509.ExtKeyUsageServerAuth, x509.ExtKeyUsageClientAuth},               // 密钥扩展用途的序列
 		IPAddresses:  []net.IP{net.ParseIP("127.0.0.1")},
 	}
 	pk, _ := rsa.GenerateKey(rand.Reader, 2048) //生成一对具有指定字位数的RSA密钥
