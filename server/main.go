@@ -51,14 +51,16 @@ func main()  {
 		log.Fatal(err.Error())
 	}
 
-	log.Printf("start public proxy basic %s\n", ListenAddr)
-
-	ProxyStat = proxy.NewStat("stat")
-
 	tlscfg, err := proxy.TlsConfigServer()
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+
+	listen = tls.NewListener(listen,tlscfg)
+
+	log.Printf("start public proxy basic %s\n", ListenAddr)
+
+	ProxyStat = proxy.NewStat("stat")
 
 	for {
 		conn, err := listen.Accept()
@@ -66,7 +68,7 @@ func main()  {
 			log.Println(err.Error())
 			continue
 		}
-		conn = tls.Client(conn, tlscfg)
+		log.Printf("remote : %s\n",conn.RemoteAddr().String())
 		go LocalConnect(LocalProxy,conn)
 	}
 }

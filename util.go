@@ -1,6 +1,7 @@
 package proxy
 
 import (
+	"log"
 	"net"
 	"sync"
 )
@@ -34,6 +35,7 @@ func TcpChannel(s *Stat, up bool,localConn net.Conn, remoteConn net.Conn, wait *
 			if cnt != 0 {
 				WriteFull(remoteConn, buf[0:cnt])
 			}
+			log.Println(err.Error())
 			break
 		}
 		if up {
@@ -43,6 +45,7 @@ func TcpChannel(s *Stat, up bool,localConn net.Conn, remoteConn net.Conn, wait *
 		}
 		err = WriteFull(remoteConn, buf[0:cnt])
 		if err != nil {
+			log.Println(err.Error())
 			break
 		}
 	}

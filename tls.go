@@ -40,8 +40,8 @@ func newTempCertificates() (tls.Certificate, error) {
 	max := new(big.Int).Lsh(big.NewInt(1), 128)   //把 1 左移 128 位，返回给 big.Int
 	serialNumber, _ := rand.Int(rand.Reader, max) //返回在 [0, max) 区间均匀随机分布的一个随机值
 	subject := pkix.Name{                         //Name代表一个X.509识别名。只包含识别名的公共属性，额外的属性被忽略。
-		Organization:       []string{"proxy co."},
-		OrganizationalUnit: []string{"proxy"},
+		Organization:       []string{"Proxy co."},
+		OrganizationalUnit: []string{"Proxy"},
 		CommonName:         "Go proxy Programming",
 	}
 	template := x509.Certificate{
